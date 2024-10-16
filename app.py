@@ -1,9 +1,41 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
+
+from streamlit_navigation_bar import st_navbar
+from streamlit_option_menu import option_menu
 
 # Configuration du nom et de l'îcone de la page 
 st.set_page_config(page_title="EXPLAIN", page_icon="🔲", layout="wide", initial_sidebar_state="auto")
+
+
+# Configuration de la première barre de tâche 
+selected = option_menu(
+    menu_title=None,  # Ne pas afficher de titre
+    options=["Documentation", "Tutorials", "Examples", "Community", "GitHub", "Settings", "Features"],
+    icons=["book", "play-circle", "file-earmark", "people", "github", "gear", "star"],  # Icônes associées
+    menu_icon="cast",  # Icône du menu
+    default_index=0,  # Option par défaut
+    orientation="horizontal",  # Orientation horizontale
+)
+
+# Définir des actions selon la page sélectionnée
+if selected == "Documentation":
+    st.write("Bienvenue dans la Documentation.")
+elif selected == "Tutorials":
+    st.write("Ici, vous trouverez des tutoriels.")
+elif selected == "Examples":
+    st.write("Exemples de projet.")
+elif selected == "Community":
+    st.write("Communauté.")
+elif selected == "GitHub":
+    st.write("[Lien vers GitHub](https://github.com/GIF-Alyex/Projet-EXPLAIN-mastercamp)")
+elif selected == "Settings":
+    st.write("Paramètres.")
+elif selected == "Features":
+    st.write("Fonctionnalités.")
+
 
 
 
@@ -20,8 +52,3 @@ df_sorted = df_sorted.reset_index(drop=True)
 df_sorted = df_sorted.fillna(0)
 
 
-
-fig, ax = plt.subplots()
-df_sorted[['energie_produite_annuelle_eolien_enedis_mwh', 'energie_produite_annuelle_photovoltaique_enedis_mwh', 'energie_produite_annuelle_hydraulique_enedis_mwh', 'energie_produite_annuelle_bio_energie_enedis_mwh', 'energie_produite_annuelle_cogeneration_enedis_mwh']].sum().plot(kind='bar', ax=ax)
-ax.set_ylabel("Production (GWh)")
-st.pyplot(fig)
