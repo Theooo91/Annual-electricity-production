@@ -33,13 +33,19 @@ This is a small project that aims to analyze a dataset related to electricity pr
 
 ## Running the Project
 
-1. **To begin, launch the virtual environment**
+1. **Before you begin, you will need to install a virtual environment**
+
+   ```bash
+   python -m venv venv
+   ```
+   
+2. **Launch the virtual environment**
 
    ```bash
    .\venv\Scripts\activate
    ```
 
-2. **Launch the Streamlit app**
+3. **Launch the Streamlit app**
 
    ```bash
    streamlit run app.py
